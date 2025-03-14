@@ -48,6 +48,29 @@ function App() {
     game,
   ])
 
+  useEffect(() => {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowDown": {
+          game.snake.go("DOWN")
+          break
+        }
+        case "ArrowUp": {
+          game.snake.go("UP")
+          break
+        }
+        case "ArrowLeft": {
+          game.snake.go("LEFT")
+          break
+        }
+        case "ArrowRight": {
+          game.snake.go("RIGHT")
+          break
+        }
+      }
+    })
+  }, [game.snake])
+
   return (
     <div className={styles.app}>
       <canvas
