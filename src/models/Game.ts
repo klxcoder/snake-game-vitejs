@@ -19,8 +19,8 @@ export class Game {
   }
   public tick() {
     const newHead = this.snake.body[this.snake.body.length - 1].getNewRowCol(this.velocity)
-    this.snake.body.push(newHead)
-    this.snake.body.shift() // remove tail
+    this.snake.addHead(newHead)
+    this.snake.removeTail()
   }
   public constructor({
     snake,
