@@ -15,7 +15,7 @@ describe('tick', () => {
     expect(snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3])
     snake.tick()
     expect(snake.getRawBody()).toStrictEqual([0, 1, 0, 2, 0, 3, 0, 4])
-    snake.goDown()
+    snake.go("DOWN")
     expect(snake.getRawBody()).toStrictEqual([0, 2, 0, 3, 0, 4, 1, 4])
     snake.tick()
     expect(snake.getRawBody()).toStrictEqual([0, 3, 0, 4, 1, 4, 2, 4])
