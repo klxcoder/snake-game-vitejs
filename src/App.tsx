@@ -74,19 +74,19 @@ function App() {
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       switch (e.key) {
         case "ArrowDown": {
-          game.snake.go("DOWN")
+          game.snake.changeDirection("DOWN")
           break
         }
         case "ArrowUp": {
-          game.snake.go("UP")
+          game.snake.changeDirection("UP")
           break
         }
         case "ArrowLeft": {
-          game.snake.go("LEFT")
+          game.snake.changeDirection("LEFT")
           break
         }
         case "ArrowRight": {
-          game.snake.go("RIGHT")
+          game.snake.changeDirection("RIGHT")
           break
         }
       }

@@ -84,7 +84,7 @@ export class Snake {
    * @param direction the direction to move
    * @returns true if moved successfully, false if moved failed
    */
-  public go(direction: Direction): boolean {
+  public changeDirection(direction: Direction): boolean {
     switch (direction) {
       case "UP": {
         if (this.direction === "DOWN") {

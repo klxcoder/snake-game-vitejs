@@ -66,7 +66,7 @@ describe('isGameOver', () => {
     })
     const game: Game = new Game({ snake, board })
     expect(game.isGameOver()).toStrictEqual(false)
-    game.snake.go("UP")
+    game.snake.changeDirection("UP")
     expect(game.isGameOver()).toStrictEqual(true)
   });
 });
