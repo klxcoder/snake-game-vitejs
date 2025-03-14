@@ -23,6 +23,6 @@ describe('add function', () => {
     const game: Game = new Game({ snake, board })
     expect(game.snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3])
     game.tick()
-    expect(game.snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3, 0, 4])
+    expect(game.snake.getRawBody()).toStrictEqual([0, 1, 0, 2, 0, 3, 0, 4])
   });
 });
