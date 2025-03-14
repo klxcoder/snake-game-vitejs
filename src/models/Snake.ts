@@ -3,21 +3,21 @@ import { RowCol } from "./RowCol";
 export class Snake {
   // head: body.at(-1)
   // tail: body[0]
-  public body: RowCol[]
-  public velocity: RowCol = new RowCol({
+  private body: RowCol[]
+  private velocity: RowCol = new RowCol({
     row: 0,
     col: 1,
   })
 
-  public getHead(): RowCol {
+  private getHead(): RowCol {
     return this.body[this.body.length - 1]
   }
 
-  public addHead(head: RowCol) {
+  private addHead(head: RowCol) {
     this.body.push(head)
   }
 
-  public removeTail() {
+  private removeTail() {
     this.body.shift()
   }
 
