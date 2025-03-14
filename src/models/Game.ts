@@ -57,8 +57,8 @@ export class Game {
    * @returns true if gave over
    */
   public isGameOver() {
-    const head: RowCol = this.snake.getHead()
-    return this.isOutOfBoard(head) || this.snake.isSelfEaten()
+    const head: RowCol = this.snake.getNextHead()
+    return this.isOutOfBoard(head) || this.snake.isInBody(head)
   }
 
   public constructor({

@@ -34,7 +34,7 @@ export class Snake {
    * 
    * @returns the head of the snake
    */
-  public getHead(): RowCol {
+  private getHead(): RowCol {
     return this.body[this.body.length - 1]
   }
 
@@ -57,7 +57,7 @@ export class Snake {
    * 
    * @returns the next head if continue moving with current velocity
    */
-  private getNextHead(): RowCol {
+  public getNextHead(): RowCol {
     return this.getHead().getNewRowCol(this.velocity)
   }
 
@@ -129,17 +129,6 @@ export class Snake {
    */
   public isInBody(cell: RowCol): boolean {
     return !!this.body.find(b => b.row === cell.row && b.col === cell.col)
-  }
-
-  /**
-   * Check if the snake eat itself
-   * @param head head of the snake
-   * @returns true of the snake eat itself
-   */
-  public isSelfEaten(): boolean {
-    const _body: RowCol[] = [...this.body]
-    const head: RowCol = _body.pop() as RowCol
-    return !!_body.find(b => b.row === head.row && b.col === head.col)
   }
 
   public constructor({
