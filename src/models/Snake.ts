@@ -30,21 +30,25 @@ export class Snake {
   public goUp() {
     this.velocity.row = -1;
     this.velocity.col = 0;
+    this.tick()
   }
 
   public goDown() {
     this.velocity.row = 1;
     this.velocity.col = 0;
+    this.tick()
   }
 
   public turnLeft() {
     this.velocity.row = 0;
     this.velocity.col = -1;
+    this.tick()
   }
 
   public turnRight() {
     this.velocity.row = 0;
     this.velocity.col = 1;
+    this.tick()
   }
 
   public constructor({
