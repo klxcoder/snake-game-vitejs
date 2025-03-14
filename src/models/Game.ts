@@ -3,9 +3,25 @@ import { RowCol } from "./RowCol";
 import { Snake } from "./Snake";
 
 export class Game {
+  /**
+   * The snake inside the game
+   */
   public snake: Snake
+
+  /**
+   * The board that the snake can crawling inside
+   */
   public board: Board
+
+  /**
+   * The food that the snake can eat
+   */
   public food: RowCol
+
+  /**
+   * 
+   * @returns random food
+   */
   public generateFood(): RowCol {
     const food: RowCol = new RowCol({
       row: 5,
@@ -14,6 +30,11 @@ export class Game {
     return food
   }
 
+  /**
+   * Check if the head is out of board
+   * @param head head of the snake
+   * @returns true if out of board
+   */
   public isOutOfBoard(head: RowCol): boolean {
     if (head.row < 0) return true
     if (head.row >= this.board.size.row) return true
@@ -22,12 +43,22 @@ export class Game {
     return false
   }
 
+  /**
+   * Check if the snake eat itself
+   * @param head head of the snake
+   * @returns true of the snake eat itself
+   */
   public isSelfEaten(head: RowCol): boolean {
     console.log(head)
     return false;
   }
 
-  public isGameOver(head: RowCol) {
+  /**
+   * Check if game over
+   * @returns true if gave over
+   */
+  public isGameOver() {
+    const head: RowCol = this.snake.getNextHead()
     return this.isOutOfBoard(head) || this.isSelfEaten(head)
   }
 
