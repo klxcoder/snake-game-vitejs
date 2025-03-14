@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './App.module.scss'
 import { Game } from './models/Game'
 import { Snake } from './models/Snake'
@@ -11,8 +11,10 @@ const TICK_RATE = 100
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [trigger, setTrigger] = useState(0)
 
   const game = useMemo(() => {
+    if (trigger) { ; }
     const snake = new Snake({
       body: new Array(4).fill(1).map((_, index) => (
         new RowCol({ row: 0, col: index })
@@ -22,7 +24,7 @@ function App() {
       size: new RowCol({ row: 25, col: 30 })
     })
     return new Game({ snake, board })
-  }, [])
+  }, [trigger])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,13 +65,7 @@ function App() {
     }, TICK_RATE)
 
     return () => clearInterval(interval)
-  }, [
-    game.board.size.col,
-    game.board.size.row,
-    game.snake.body,
-    game.snake,
-    game,
-  ])
+  }, [game])
 
   useEffect(() => {
     const keyDownListener = (e: KeyboardEvent) => {
@@ -94,7 +90,7 @@ function App() {
     }
     document.addEventListener('keydown', keyDownListener)
     return () => document.removeEventListener('keydown', keyDownListener)
-  }, [game.snake])
+  }, [game])
 
   return (
     <div className={styles.app}>
@@ -105,6 +101,10 @@ function App() {
         ref={canvasRef}
       >
       </canvas>
+      <button
+        className={styles.reset}
+        onClick={() => setTrigger(trigger + 1)}
+      >Reset</button>
     </div>
   )
 }
