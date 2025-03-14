@@ -13,14 +13,34 @@ describe('tick', () => {
       }),
     })
     expect(snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3])
-    snake.tick()
-    expect(snake.getRawBody()).toStrictEqual([0, 1, 0, 2, 0, 3, 0, 4])
-    snake.changeDirection("DOWN")
-    expect(snake.getRawBody()).toStrictEqual([0, 1, 0, 2, 0, 3, 0, 4])
-    snake.tick()
-    expect(snake.getRawBody()).toStrictEqual([0, 2, 0, 3, 0, 4, 1, 4])
-    snake.tick()
-    expect(snake.getRawBody()).toStrictEqual([0, 3, 0, 4, 1, 4, 2, 4])
+    {
+      // DOWN and tick
+      snake.changeDirection("DOWN")
+      snake.tick()
+      expect(snake.getRawBody()).toStrictEqual([0, 1, 0, 2, 0, 3, 1, 3])
+      snake.changeDirection("UP")
+    }
+    {
+      // RIGHT and tick
+      snake.changeDirection("RIGHT")
+      snake.tick()
+      expect(snake.getRawBody()).toStrictEqual([0, 2, 0, 3, 1, 3, 1, 4])
+      snake.changeDirection("LEFT")
+    }
+    {
+      // UP and tick
+      snake.changeDirection("UP")
+      snake.tick()
+      expect(snake.getRawBody()).toStrictEqual([0, 3, 1, 3, 1, 4, 0, 4])
+      snake.changeDirection("DOWN")
+    }
+    {
+      // LEFT and tick
+      snake.changeDirection("LEFT")
+      snake.tick()
+      expect(snake.getRawBody()).toStrictEqual([1, 3, 1, 4, 0, 4, 0, 3])
+      snake.changeDirection("RIGHT")
+    }
   });
   it('isInBody', () => {
     const snake: Snake = new Snake({
