@@ -41,7 +41,14 @@ function App() {
       if (game.isGameOver()) {
         clearInterval(interval)
       } else {
-        game.snake.tick()
+        const nextHead: RowCol = game.snake.getNextHead()
+        const headIsFood: boolean = nextHead.row === game.food.row && nextHead.col === game.food.col
+        if (headIsFood) {
+          game.snake.tick(false) // do not remove tail
+          game.food = game.generateFood()
+        } else {
+          game.snake.tick(true) // remove tail
+        }
       }
     }, 100)
 

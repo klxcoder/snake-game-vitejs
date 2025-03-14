@@ -5,7 +5,5 @@
   - https://klxcoder.github.io/snake-game-vitejs/
 
 # TODO:
-  - Show food
-  - Make snake longer if eat food
   - Show text "Game over"
   - Add function "Reset game"

@@ -68,10 +68,12 @@ export class Snake {
    * - Do not check for `eat itself`
    * - Just move
    */
-  public tick() {
+  public tick(removeTail: boolean = true) {
     const head: RowCol = this.getNextHead()
     this.addHead(head)
-    this.removeTail()
+    if (removeTail) {
+      this.removeTail()
+    }
   }
 
   /**
