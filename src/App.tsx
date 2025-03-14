@@ -72,7 +72,7 @@ function App() {
   ])
 
   useEffect(() => {
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
+    const keyDownListener = (e: KeyboardEvent) => {
       switch (e.key) {
         case "ArrowDown": {
           game.snake.changeDirection("DOWN")
@@ -91,7 +91,9 @@ function App() {
           break
         }
       }
-    })
+    }
+    document.addEventListener('keydown', keyDownListener)
+    return () => document.removeEventListener('keydown', keyDownListener)
   }, [game.snake])
 
   return (
