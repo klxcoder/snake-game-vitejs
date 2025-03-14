@@ -8,7 +8,7 @@ export class Snake {
    * head: body.at(-1)
    * tail: body[0]
    */
-  private body: RowCol[]
+  public body: RowCol[]
 
   /**
    * - The direction of the snake.

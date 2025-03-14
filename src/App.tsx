@@ -6,7 +6,7 @@ import { Board } from './models/Board'
 import { RowCol } from './models/RowCol'
 import { getRandomHSLColor } from './utils/utils'
 
-const CELL_SIZE = 15
+const CELL_SIZE = 20
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -18,7 +18,7 @@ function App() {
       )),
     })
     const board = new Board({
-      size: new RowCol({ row: 15, col: 30 })
+      size: new RowCol({ row: 25, col: 30 })
     })
     return new Game({ snake, board })
   }, [])
@@ -33,24 +33,23 @@ function App() {
         ctx.fillRect(b.col * CELL_SIZE, b.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         console.log('will draw', b)
       })
-      ctx.fill()
+      game.snake.tick()
     }, 100)
 
     return () => clearTimeout(timeout)
   }, [
     game.board.size.col,
     game.board.size.row,
-    game.snake.body
+    game.snake.body,
+    game.snake,
   ])
 
   return (
     <div className={styles.app}>
       <canvas
         className={styles.canvas}
-        style={{
-          width: game.board.size.col * CELL_SIZE,
-          height: game.board.size.row * CELL_SIZE,
-        }}
+        width={game.board.size.col * CELL_SIZE}
+        height={game.board.size.row * CELL_SIZE}
         ref={canvasRef}
       >
       </canvas>
