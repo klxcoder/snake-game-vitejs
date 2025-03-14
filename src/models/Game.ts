@@ -18,7 +18,8 @@ export class Game {
     return food
   }
   public tick() {
-    // const new head = old head + velocity
+    const newHead = this.snake.body[this.snake.body.length - 1].getNewRowCol(this.velocity)
+    this.snake.body.push(newHead)
   }
   public constructor({
     snake,
