@@ -4,8 +4,8 @@ import { Snake } from './Snake';
 import { Board } from './Board';
 import { RowCol } from './RowCol';
 
-describe('add function', () => {
-  it('adds two numbers correctly', () => {
+describe('isOutOfBoard', () => {
+  it('isOutOfBoard', () => {
     const snake: Snake = new Snake({
       body: new Array(4).fill(1).map((_, index) => {
         return new RowCol({
@@ -21,8 +21,29 @@ describe('add function', () => {
       })
     })
     const game: Game = new Game({ snake, board })
-    expect(game.snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3])
-    game.tick()
-    expect(game.snake.getRawBody()).toStrictEqual([0, 1, 0, 2, 0, 3, 0, 4])
+    expect(game.isOutOfBoard(new RowCol({
+      row: 0,
+      col: 0,
+    }))).toStrictEqual(false)
+    expect(game.isOutOfBoard(new RowCol({
+      row: 9,
+      col: 9,
+    }))).toStrictEqual(false)
+    expect(game.isOutOfBoard(new RowCol({
+      row: -1,
+      col: 0,
+    }))).toStrictEqual(true)
+    expect(game.isOutOfBoard(new RowCol({
+      row: 0,
+      col: -1,
+    }))).toStrictEqual(true)
+    expect(game.isOutOfBoard(new RowCol({
+      row: 10,
+      col: 0,
+    }))).toStrictEqual(true)
+    expect(game.isOutOfBoard(new RowCol({
+      row: 0,
+      col: 10,
+    }))).toStrictEqual(true)
   });
 });
