@@ -27,9 +27,10 @@ function App() {
   }, [trigger])
 
   useEffect(() => {
+    const ctx: CanvasRenderingContext2D | null | undefined = canvasRef.current?.getContext('2d')
+    if (!ctx) return
+    let foodColor: string = getRandomHSLColor()
     const interval = setInterval(() => {
-      const ctx: CanvasRenderingContext2D | null | undefined = canvasRef.current?.getContext('2d')
-      if (!ctx) return
       // clear canvas
       ctx.clearRect(0, 0, game.board.size.col * CELL_SIZE, game.board.size.row * CELL_SIZE)
       // draw snake body
@@ -38,7 +39,7 @@ function App() {
         ctx.fillRect(b.col * CELL_SIZE, b.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       })
       // draw food
-      ctx.fillStyle = getRandomHSLColor()
+      ctx.fillStyle = foodColor
       ctx.fillRect(game.food.col * CELL_SIZE, game.food.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       //
       if (game.isGameOver()) {
@@ -57,6 +58,7 @@ function App() {
         const headIsFood: boolean = nextHead.row === game.food.row && nextHead.col === game.food.col
         if (headIsFood) {
           game.snake.tick(false) // do not remove tail
+          foodColor = getRandomHSLColor();
           game.food = game.generateFood()
         } else {
           game.snake.tick(true) // remove tail
