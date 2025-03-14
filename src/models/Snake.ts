@@ -120,6 +120,15 @@ export class Snake {
     return true
   }
 
+  /**
+   * Check if the snake eat itself
+   * @param head head of the snake
+   * @returns true of the snake eat itself
+   */
+  public isSelfEaten(head: RowCol): boolean {
+    return !!this.body.find(b => b.row === head.row && b.col === head.col)
+  }
+
   public constructor({
     body,
   }: {

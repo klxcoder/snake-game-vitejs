@@ -44,22 +44,12 @@ export class Game {
   }
 
   /**
-   * Check if the snake eat itself
-   * @param head head of the snake
-   * @returns true of the snake eat itself
-   */
-  public isSelfEaten(head: RowCol): boolean {
-    console.log(head)
-    return false;
-  }
-
-  /**
    * Check if game over
    * @returns true if gave over
    */
   public isGameOver() {
     const head: RowCol = this.snake.getNextHead()
-    return this.isOutOfBoard(head) || this.isSelfEaten(head)
+    return this.isOutOfBoard(head) || this.snake.isSelfEaten(head)
   }
 
   public constructor({
