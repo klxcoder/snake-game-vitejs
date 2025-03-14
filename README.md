@@ -3,6 +3,3 @@
 
 # Live demo
   - https://klxcoder.github.io/snake-game-vitejs/
-
-# TODO:
-  - Add function "Reset game"
