@@ -34,7 +34,7 @@ export class Snake {
    * 
    * @returns the head of the snake
    */
-  private getHead(): RowCol {
+  public getHead(): RowCol {
     return this.body[this.body.length - 1]
   }
 
@@ -57,7 +57,7 @@ export class Snake {
    * 
    * @returns the next head if continue moving with current velocity
    */
-  public getNextHead(): RowCol {
+  private getNextHead(): RowCol {
     return this.getHead().getNewRowCol(this.velocity)
   }
 
@@ -77,6 +77,8 @@ export class Snake {
   /**
    * - Move the snake base on the direction to move
    * - Move will fail if try to move the opposite direction of current direction
+   * - Snake can `move out of board`
+   * - Snake can `eat itself`
    * @param direction the direction to move
    * @returns true if moved successfully, false if moved failed
    */
@@ -125,8 +127,10 @@ export class Snake {
    * @param head head of the snake
    * @returns true of the snake eat itself
    */
-  public isSelfEaten(head: RowCol): boolean {
-    return !!this.body.find(b => b.row === head.row && b.col === head.col)
+  public isSelfEaten(): boolean {
+    const _body: RowCol[] = [...this.body]
+    const head: RowCol = _body.pop() as RowCol
+    return !!_body.find(b => b.row === head.row && b.col === head.col)
   }
 
   public constructor({

@@ -22,25 +22,24 @@ describe('tick', () => {
   });
   it('isSelfEaten', () => {
     const snake: Snake = new Snake({
-      body: new Array(4).fill(1).map((_, index) => {
+      body: new Array(5).fill(1).map((_, index) => {
         return new RowCol({
           row: 0,
           col: index,
         })
       }),
     })
-    expect(snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3])
-    expect(snake.isSelfEaten(new RowCol({
-      row: 0,
-      col: 0,
-    }))).toStrictEqual(true)
-    expect(snake.isSelfEaten(new RowCol({
-      row: 0,
-      col: 3,
-    }))).toStrictEqual(true)
-    expect(snake.isSelfEaten(new RowCol({
-      row: 0,
-      col: 4,
-    }))).toStrictEqual(false)
+    expect(snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3, 0, 4])
+    console.log(snake.getRawBody())
+    expect(snake.isSelfEaten()).toStrictEqual(false)
+    snake.go("DOWN")
+    console.log(snake.getRawBody())
+    expect(snake.isSelfEaten()).toStrictEqual(false)
+    snake.go("LEFT")
+    console.log(snake.getRawBody())
+    expect(snake.isSelfEaten()).toStrictEqual(false)
+    snake.go("UP")
+    console.log(snake.getRawBody())
+    expect(snake.isSelfEaten()).toStrictEqual(true)
   });
 });
