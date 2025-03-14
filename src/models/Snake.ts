@@ -123,6 +123,15 @@ export class Snake {
   }
 
   /**
+   * Check if snake body contain the given cell
+   * @param cell 
+   * @returns true if snake body contain the cell
+   */
+  public isInBody(cell: RowCol): boolean {
+    return !!this.body.find(b => b.row === cell.row && b.col === cell.col)
+  }
+
+  /**
    * Check if the snake eat itself
    * @param head head of the snake
    * @returns true of the snake eat itself
