@@ -40,6 +40,15 @@ function App() {
       //
       if (game.isGameOver()) {
         clearInterval(interval)
+        // Draw text Game Over
+        ctx.font = '50px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(
+          'Game Over',
+          game.board.size.col * CELL_SIZE / 2,
+          game.board.size.row * CELL_SIZE / 2,
+        );
       } else {
         const nextHead: RowCol = game.snake.getNextHead()
         const headIsFood: boolean = nextHead.row === game.food.row && nextHead.col === game.food.col
@@ -50,7 +59,7 @@ function App() {
           game.snake.tick(true) // remove tail
         }
       }
-    }, 100)
+    }, 1000)
 
     return () => clearInterval(interval)
   }, [
