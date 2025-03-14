@@ -1,3 +1,4 @@
+import { getRandomInt } from "../utils/utils";
 import { Board } from "./Board";
 import { RowCol } from "./RowCol";
 import { Snake } from "./Snake";
@@ -23,11 +24,19 @@ export class Game {
    * @returns random food
    */
   public generateFood(): RowCol {
-    const food: RowCol = new RowCol({
-      row: 5,
-      col: 5,
+    let maxN = 1000;
+    while (maxN--) {
+      const row = getRandomInt(0, this.board.size.row - 1)
+      const col = getRandomInt(0, this.board.size.col - 1)
+      const cell: RowCol = new RowCol({ row, col })
+      if (!this.snake.isInBody(cell)) {
+        return cell
+      }
+    }
+    return new RowCol({
+      row: -1,
+      col: -1,
     })
-    return food
   }
 
   /**
