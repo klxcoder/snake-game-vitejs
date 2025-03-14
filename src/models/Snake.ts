@@ -11,4 +11,7 @@ export class Snake {
   }) {
     this.body = body
   }
+  public getRawBody(): number[] {
+    return this.body.reduce<number[]>((acc, cur) => [...acc, cur.row, cur.col], [])
+  }
 }

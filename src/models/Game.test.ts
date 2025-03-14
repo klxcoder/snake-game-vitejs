@@ -7,7 +7,12 @@ import { RowCol } from './RowCol';
 describe('add function', () => {
   it('adds two numbers correctly', () => {
     const snake: Snake = new Snake({
-      body: [],
+      body: new Array(4).fill(1).map((_, index) => {
+        return new RowCol({
+          row: 0,
+          col: index,
+        })
+      }),
     })
     const board: Board = new Board({
       size: new RowCol({
@@ -16,6 +21,8 @@ describe('add function', () => {
       })
     })
     const game: Game = new Game({ snake, board })
-    expect(game).not.toBe(undefined);
+    expect(game.snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3])
+    game.tick()
+    expect(game.snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3, 0, 4])
   });
 });
