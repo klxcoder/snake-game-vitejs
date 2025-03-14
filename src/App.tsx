@@ -7,6 +7,7 @@ import { RowCol } from './models/RowCol'
 import { getRandomHSLColor } from './utils/utils'
 
 const CELL_SIZE = 20
+const TICK_RATE = 100
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -59,7 +60,7 @@ function App() {
           game.snake.tick(true) // remove tail
         }
       }
-    }, 100)
+    }, TICK_RATE)
 
     return () => clearInterval(interval)
   }, [
