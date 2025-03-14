@@ -27,11 +27,17 @@ function App() {
     const interval = setInterval(() => {
       const ctx: CanvasRenderingContext2D | null | undefined = canvasRef.current?.getContext('2d')
       if (!ctx) return
+      // clear canvas
       ctx.clearRect(0, 0, game.board.size.col * CELL_SIZE, game.board.size.row * CELL_SIZE)
+      // draw snake body
       game.snake.body.forEach(b => {
         ctx.fillStyle = getRandomHSLColor()
         ctx.fillRect(b.col * CELL_SIZE, b.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       })
+      // draw food
+      ctx.fillStyle = getRandomHSLColor()
+      ctx.fillRect(game.food.col * CELL_SIZE, game.food.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      //
       if (game.isGameOver()) {
         clearInterval(interval)
       } else {
