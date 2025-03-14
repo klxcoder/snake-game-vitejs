@@ -5,5 +5,4 @@
   - https://klxcoder.github.io/snake-game-vitejs/
 
 # TODO:
-  - Check "Game Over" before ticking
   - Add function "Reset game"

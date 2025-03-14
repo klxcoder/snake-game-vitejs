@@ -59,7 +59,7 @@ function App() {
           game.snake.tick(true) // remove tail
         }
       }
-    }, 1000)
+    }, 100)
 
     return () => clearInterval(interval)
   }, [
