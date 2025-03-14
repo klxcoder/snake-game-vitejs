@@ -24,24 +24,28 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const interval = setInterval(() => {
       const ctx: CanvasRenderingContext2D | null | undefined = canvasRef.current?.getContext('2d')
       if (!ctx) return
       ctx.clearRect(0, 0, game.board.size.col * CELL_SIZE, game.board.size.row * CELL_SIZE)
       game.snake.body.forEach(b => {
         ctx.fillStyle = getRandomHSLColor()
         ctx.fillRect(b.col * CELL_SIZE, b.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        console.log('will draw', b)
       })
-      game.snake.tick()
+      if (game.isGameOver()) {
+        clearInterval(interval)
+      } else {
+        game.snake.tick()
+      }
     }, 100)
 
-    return () => clearTimeout(timeout)
+    return () => clearInterval(interval)
   }, [
     game.board.size.col,
     game.board.size.row,
     game.snake.body,
     game.snake,
+    game,
   ])
 
   return (
