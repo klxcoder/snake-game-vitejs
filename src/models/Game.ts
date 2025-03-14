@@ -6,12 +6,19 @@ export class Game {
   public snake: Snake
   public board: Board
   public food: RowCol
+  public velocity: RowCol = new RowCol({
+    row: 0,
+    col: 1,
+  })
   public generateFood(): RowCol {
-    const food: RowCol = {
+    const food: RowCol = new RowCol({
       row: 5,
       col: 5,
-    }
+    })
     return food
+  }
+  public tick() {
+    // const new head = old head + velocity
   }
   public constructor({
     snake,
