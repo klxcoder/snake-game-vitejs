@@ -32,7 +32,6 @@ describe('tick', () => {
       }),
     })
     expect(snake.getRawBody()).toStrictEqual([0, 0, 0, 1, 0, 2, 0, 3, 0, 4])
-    console.log(snake.getRawBody())
     expect(snake.isInBody(new RowCol({
       row: 0,
       col: 0,
