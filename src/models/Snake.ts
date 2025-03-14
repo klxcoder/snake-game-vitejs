@@ -77,12 +77,14 @@ export class Snake {
   }
 
   /**
-   * - Move the snake base on the direction to move
-   * - Move will fail if try to move the opposite direction of current direction
+   * - Update direction and velocity
+   * - Base on the given direction
+   * - Will fail if try to move the opposite direction of current direction
    * - Snake can `move out of board`
    * - Snake can `eat itself`
+   * - So, you have to check those conditions before calling this function
    * @param direction the direction to move
-   * @returns true if moved successfully, false if moved failed
+   * @returns true if change direction successfully, false if change direction failed
    */
   public changeDirection(direction: Direction): boolean {
     switch (direction) {
@@ -120,7 +122,6 @@ export class Snake {
       }
     }
     this.direction = direction
-    this.tick()
     return true
   }
 
