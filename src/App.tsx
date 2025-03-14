@@ -30,13 +30,14 @@ function App() {
     const ctx: CanvasRenderingContext2D | null | undefined = canvasRef.current?.getContext('2d')
     if (!ctx) return
     let foodColor: string = getRandomHSLColor()
+    const snakeColors: string[] = game.snake.body.map(() => getRandomHSLColor())
     const interval = setInterval(() => {
       // clear canvas
       ctx.clearRect(0, 0, game.board.size.col * CELL_SIZE, game.board.size.row * CELL_SIZE)
       // draw snake body
-      game.snake.body.forEach(b => {
-        ctx.fillStyle = getRandomHSLColor()
-        ctx.fillRect(b.col * CELL_SIZE, b.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      game.snake.body.forEach((cell, index) => {
+        ctx.fillStyle = snakeColors[index]
+        ctx.fillRect(cell.col * CELL_SIZE, cell.row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
       })
       // draw food
       ctx.fillStyle = foodColor
@@ -58,6 +59,7 @@ function App() {
         const headIsFood: boolean = nextHead.row === game.food.row && nextHead.col === game.food.col
         if (headIsFood) {
           game.snake.tick(false) // do not remove tail
+          snakeColors.push(foodColor)
           foodColor = getRandomHSLColor();
           game.food = game.generateFood()
         } else {
