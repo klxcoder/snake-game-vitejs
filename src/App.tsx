@@ -15,13 +15,13 @@ function App() {
 
   const game = useMemo(() => {
     if (trigger) { ; }
-    const snake = new Snake({
-      body: new Array(4).fill(1).map((_, index) => (
-        new RowCol({ row: 0, col: index })
-      )),
-    })
     const board = new Board({
       size: new RowCol({ row: 25, col: 30 })
+    })
+    const snake = new Snake({
+      body: new Array(4).fill(1).map((_, index) => (
+        new RowCol({ row: Math.floor(board.size.row / 2), col: index })
+      )),
     })
     return new Game({ snake, board })
   }, [trigger])
